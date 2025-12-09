@@ -10,8 +10,20 @@ final appRouter = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: '/Monumentos',
+      path: '/monumentos',
       builder: (context, state) => const MonumentosScreen(),
-    )
+    ),
+    GoRoute(
+      path: '/rutasapp',
+      builder: (context, state) => const MonumentosScreen(),
+    ),
+    GoRoute(
+      path: '/tema',
+      builder: (context, state) => const MonumentosScreen(),
+    ),
+    GoRoute(
+      path: '/config',
+      builder: (context, state) => const MonumentosScreen(),
+    ),
   ]
 );

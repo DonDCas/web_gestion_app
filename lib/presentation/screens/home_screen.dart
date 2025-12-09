@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,64 +8,73 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('TEXTO DE EJEMPLO'), centerTitle: true),
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: (){context.push('/Monumentos');},
-                  child: Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.black,
-                      ),
-                    ),
+                ElevatedButton(
+                  onPressed: () {
+                    context.go('/monumentos');
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.green),
+                    minimumSize: WidgetStatePropertyAll(Size(400, 200)),
                   ),
+                  child: Text('Monumentos'),
                 ),
-                SizedBox(width: 20,),
-                 Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.black,
+                SizedBox(width: 200),
+                GestureDetector(
+                  onTap: () {
+                    context.go('/monumentos');
+                  },
+                  child: Container(
+                    height: 200,
+                    width: 400,
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 50,),
+            SizedBox(height: 200),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-               Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.black,
+                GestureDetector(
+                  onTap: () {
+                    context.go('/monumentos');
+                  },
+                  child: Container(
+                    height: 200,
+                    width: 400,
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                   ),
                 ),
-                SizedBox(width: 20,),
-                 Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.black,
+                SizedBox(width: 200),
+                GestureDetector(
+                  onTap: () {
+                    context.go('/monumentos');
+                  },
+                  child: Container(
+                    height: 200,
+                    width: 400,
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
