@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('TEXTO DE EJEMPLO'), centerTitle: true),
+      appBar: AppBar(title: Text('Editando Conoce Tu Historia'), centerTitle: true),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(width: 200),
                 pintaBoton(
                   titulo: "TEMA",
-                  ruta: "/monumentos",
+                  ruta: "/tema",
                   color: Colors.purple,
                   icono: Icons.palette,
                   context: context,
