@@ -13,6 +13,17 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.blue,
+        // Otros estilos para tema claro
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
+        // Otros estilos para tema oscuro
+      ),
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
     );
