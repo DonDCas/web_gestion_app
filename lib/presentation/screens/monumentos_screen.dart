@@ -62,30 +62,41 @@ class _MonumentosScreenState extends State<MonumentosScreen> {
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // Boton de ir a la pagina anterior
-                    GestureDetector(
-                      onTap: () {
+                    // Boton de volver al menu
+                    ElevatedButton(
+                      onPressed: () {
                         context.go('/');
                       },
-                      child: Container(
-                        height: 30,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_back),
-                            Text('Atras', style: TextStyle(fontSize: 18)),
-                          ],
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.resolveWith((
+                          estado,
+                        ) {
+                          if (estado.contains(WidgetState.pressed)) {
+                            return const Color.fromARGB(255, 197, 197, 197);
+                          }
+                          return const Color.fromARGB(255, 103, 103, 103);
+                        }),
+                        minimumSize: WidgetStatePropertyAll(Size(250, 80)),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                       ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.arrow_back, color: Colors.white, size: 26,),
+                          SizedBox(width: 10),
+                          Text(
+                            'Volver al menú',
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(width: 14),
+                    SizedBox(width: 20),
                     // Boton de guardar cambios
                     ElevatedButton(
                       onPressed: () {
@@ -93,11 +104,30 @@ class _MonumentosScreenState extends State<MonumentosScreen> {
                         context.go('/');
                       },
                       style: ButtonStyle(
-                        
+                        backgroundColor: WidgetStateProperty.resolveWith((
+                          estado,
+                        ) {
+                          if (estado.contains(WidgetState.pressed)) {
+                            return const Color.fromARGB(255, 0, 255, 170);
+                          }
+                          return const Color.fromARGB(255, 115, 229, 143);
+                        }),
+                        minimumSize: WidgetStatePropertyAll(Size(250, 80)),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
                       ),
-                      child: Text(
-                        'Guardar Cambios',
-                        style: TextStyle(fontSize: 18),
+                      child: Row(
+                        children: [
+                          Icon(Icons.save, color: Colors.white, size: 26,),
+                          SizedBox(width: 10),
+                          Text(
+                            'Guardar Cambios',
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                          ),
+                        ],
                       ),
                     ),
                   ],
