@@ -16,29 +16,20 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    context.go('/monumentos');
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.green),
-                    minimumSize: WidgetStatePropertyAll(Size(400, 200)),
-                  ),
-                  child: Text('Monumentos'),
+                pintaBoton(
+                  titulo: "MONUMENTOS",
+                  ruta: "/monumentos",
+                  color: Colors.blue,
+                  icono: Icons.castle_outlined,
+                  context: context,
                 ),
                 SizedBox(width: 200),
-                GestureDetector(
-                  onTap: () {
-                    context.go('/monumentos');
-                  },
-                  child: Container(
-                    height: 200,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                  ),
+                pintaBoton(
+                  titulo: "RUTAS APP",
+                  ruta: "/noseque",
+                  color: Colors.green,
+                  icono: Icons.signpost_sharp,
+                  context: context,
                 ),
               ],
             ),
@@ -46,37 +37,70 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    context.go('/monumentos');
-                  },
-                  child: Container(
-                    height: 200,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                  ),
+                pintaBoton(
+                  titulo: "CONFIGURACIÓN",
+                  ruta: "/monumentos",
+                  color: Colors.grey,
+                  icono: Icons.settings,
+                  context: context,
                 ),
                 SizedBox(width: 200),
-                GestureDetector(
-                  onTap: () {
-                    context.go('/monumentos');
-                  },
-                  child: Container(
-                    height: 200,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                  ),
+                pintaBoton(
+                  titulo: "TEMA",
+                  ruta: "/monumentos",
+                  color: Colors.purple,
+                  icono: Icons.palette,
+                  context: context,
                 ),
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  pintaBoton({
+    required String titulo,
+    required String ruta,
+    required BuildContext context,
+    required MaterialColor color,
+    required IconData icono,
+  }) {
+    return ElevatedButton(
+      onPressed: () {
+        context.go(ruta);
+      },
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.resolveWith((estado) {
+          if (estado.contains(WidgetState.pressed)) {
+            return color[300];
+          }
+          return color;
+        }),
+        minimumSize: WidgetStatePropertyAll(Size(400, 200)),
+        elevation: WidgetStateProperty.resolveWith((estado) {
+          if (estado.contains(WidgetState.pressed)) return 2;
+          return 10;
+        }),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icono, size: 56, color: Colors.white),
+          SizedBox(width: 15),
+          Text(
+            titulo,
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
     );
   }
