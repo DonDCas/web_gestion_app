@@ -26,7 +26,6 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(width: 200),
                 pintaBoton(
                   titulo: "RUTAS APP",
-                  ruta: "/noseque",
                   ruta: "/rutasapp",
                   color: Colors.green,
                   icono: Icons.signpost_sharp,
