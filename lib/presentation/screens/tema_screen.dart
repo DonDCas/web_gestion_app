@@ -48,7 +48,9 @@ class _TemaScreenState extends State<TemaScreen> {
               Container(
                 width: MediaQuery.of(context).size.width / 2,
                 decoration: BoxDecoration(
-                  color: Color(tema!.color),
+                  color: tema == null || tema!.modoOscuro
+                      ? const Color.fromARGB(255, 234, 184, 246)
+                      : const Color.fromARGB(139, 213, 213, 213),
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                 ),
                 child: Padding(
@@ -56,12 +58,22 @@ class _TemaScreenState extends State<TemaScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Modo Oscuro'),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: const Text(
+                          'Modo Oscuro',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                       Switch(
                         value: tema!.modoOscuro,
                         onChanged: (bool value) {
                           setState(() => tema!.modoOscuro = value);
                         },
+                        activeTrackColor: const Color.fromARGB(255, 166, 38, 235),
                       ),
                     ],
                   ),
@@ -78,7 +90,10 @@ class _TemaScreenState extends State<TemaScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(18)),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 160, vertical: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 160,
+                    vertical: 20,
+                  ),
                   child: ColorPicker(
                     pickerColor: currentColor,
                     onColorChanged: (Color color) {
@@ -100,21 +115,30 @@ class _TemaScreenState extends State<TemaScreen> {
               //Selector Tamaño Fuente
               Container(
                 decoration: BoxDecoration(
-                  color: Color(tema!.color),
+                  color: const Color.fromARGB(255, 234, 184, 246),
                   borderRadius: BorderRadius.all(Radius.circular(18)),
                 ),
                 width: MediaQuery.of(context).size.width / 2,
                 child: Column(
                   children: [
-                    const Text(
-                      'Tamaño de letra',
-                      style: TextStyle(fontSize: 18),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: const Text(
+                        'Tamaño de letra',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     Slider(
+                      thumbColor: const Color.fromARGB(255, 166, 38, 235),
+                      activeColor: const Color.fromARGB(255, 166, 38, 235),
                       value: tema!.fontSize.toDouble(),
                       min: 10,
-                      max: 40,
-                      divisions: 30, // opcional: hace que salte de 1 en 1
+                      max: 30,
+                      divisions: 10, // opcional: hace que salte de 1 en 1
                       label: '${tema!.fontSize}px',
                       onChanged: (double value) {
                         setState(() {
