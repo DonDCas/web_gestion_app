@@ -128,7 +128,7 @@ class _TemaScreenState extends State<TemaScreen> {
               ),
             ),
 
-            SizedBox(height: 20,),
+            SizedBox(height: 300,),
 
 
             Row(
@@ -202,7 +202,7 @@ class _TemaScreenState extends State<TemaScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 30),
           ],
         ),
       ),

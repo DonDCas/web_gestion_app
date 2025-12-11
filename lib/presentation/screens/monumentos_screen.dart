@@ -1,4 +1,3 @@
-import 'package:flutter_colorpicker/flutter_colorpicker.dart' show ColorPicker;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:web_gestion_app/models/monumento_config_model.dart';
