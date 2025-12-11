@@ -9,7 +9,7 @@ TemaConfig temaConfigFromJson(String str) => TemaConfig.fromJson(json.decode(str
 String temaConfigToJson(TemaConfig data) => json.encode(data.toJson());
 
 class TemaConfig {
-    String color;
+    int color;
     bool modoOscuro;
     int fontSize;
 

@@ -6,7 +6,7 @@ class TemaConfigService {
   final String _endPoint = "https://ejcalientegrupos2025-default-rtdb.europe-west1.firebasedatabase.app/gestion/Tema.json";
   Future<TemaConfig?> getTema() async{
 
-    TemaConfig temaConfig = TemaConfig(color: '000000', modoOscuro: false, fontSize: 18);
+    TemaConfig temaConfig = TemaConfig(color: 000000, modoOscuro: false, fontSize: 18);
 
     Uri uri = Uri.parse(_endPoint);
     Response response = await get(uri);
