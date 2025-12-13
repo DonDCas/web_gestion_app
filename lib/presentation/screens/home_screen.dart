@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 pintaBoton(
                   titulo: "CONFIGURACIÓN",
-                  ruta: "/monumentos",
+                  ruta: "/config",
                   color: Colors.grey,
                   icono: Icons.settings,
                   context: context,

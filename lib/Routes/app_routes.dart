@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
+import 'package:web_gestion_app/presentation/screens/configuracion_screen.dart';
 import 'package:web_gestion_app/presentation/screens/home_screen.dart';
 import 'package:web_gestion_app/presentation/screens/monumentos_screen.dart';
+import 'package:web_gestion_app/presentation/screens/rutas_screen.dart';
 import 'package:web_gestion_app/presentation/screens/tema_screen.dart';
 
 final appRouter = GoRouter(
@@ -16,7 +18,7 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/rutasapp',
-      builder: (context, state) => const MonumentosScreen(),
+      builder: (context, state) => const RutasScreen(),
     ),
     GoRoute(
       path: '/tema',
@@ -24,7 +26,7 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/config',
-      builder: (context, state) => const MonumentosScreen(),
+      builder: (context, state) => const ConfiguracionScreen(),
     ),
   ]
 );
