@@ -39,200 +39,201 @@ class _TemaScreenState extends State<TemaScreen> {
 
     return Scaffold(
       body: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width / 2,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Selector Modo Oscuro
-              Container(
-                width: MediaQuery.of(context).size.width / 2,
-                decoration: BoxDecoration(
-                  color: tema == null || tema!.modoOscuro
-                      ? const Color.fromARGB(255, 234, 184, 246)
-                      : const Color.fromARGB(139, 213, 213, 213),
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width / 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Selector Modo Oscuro
+                Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                    color: tema == null || tema!.modoOscuro
+                        ? const Color.fromARGB(255, 193, 246, 184)
+                        : const Color.fromARGB(139, 213, 213, 213),
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Text(
+                            'Modo Oscuro',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: tema!.modoOscuro ? Colors.black : Colors.white
+                            ),
+                          ),
+                        ),
+                        Switch(
+                          value: tema!.modoOscuro,
+                          onChanged: (bool value) {
+                            setState(() => tema!.modoOscuro = value);
+                          },
+                          activeTrackColor: const Color.fromARGB(255, 38, 235, 48),
+                          activeThumbColor: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          
+                const SizedBox(height: 20),
+          
+                //Selector de color
+                Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                    color: Color(tema!.color),
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ColorPicker(
+                      pickerColor: currentColor,
+                      onColorChanged: (Color color) {
+                        setState(() {
+                          currentColor = color;
+                          tema!.color = currentColor.toARGB32();
+                        });
+                      },
+                      pickerAreaBorderRadius: BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                      pickerAreaHeightPercent: 0.5,
+                    ),
+                  ),
+                ),
+          
+                const SizedBox(height: 20),
+          
+                //Selector Tamaño Fuente
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 193, 246, 184),
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                  ),
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 5.0),
+                        padding: const EdgeInsets.only(top: 20),
                         child: const Text(
-                          'Modo Oscuro',
+                          'Tamaño de letra',
                           style: TextStyle(
                             fontSize: 18,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      Switch(
-                        value: tema!.modoOscuro,
-                        onChanged: (bool value) {
-                          setState(() => tema!.modoOscuro = value);
+                      Slider(
+                        thumbColor: const Color.fromARGB(255, 0, 255, 60),
+                        activeColor: const Color.fromARGB(255, 0, 255, 60),
+                        value: tema!.fontSize.toDouble(),
+                        min: 10,
+                        max: 30,
+                        divisions: 10,
+                        label: '${tema!.fontSize}px',
+                        onChanged: (double value) {
+                          setState(() {
+                            tema!.fontSize = value.toInt();
+                          });
                         },
-                        activeTrackColor: const Color.fromARGB(255, 166, 38, 235),
                       ),
                     ],
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 20),
-
-              //Selector de color
-              Container(
-                width: MediaQuery.of(context).size.width / 2,
-                decoration: BoxDecoration(
-                  color: Color(tema!.color),
-                  borderRadius: BorderRadius.all(Radius.circular(18)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 160,
-                    vertical: 20,
-                  ),
-                  child: ColorPicker(
-                    pickerColor: currentColor,
-                    onColorChanged: (Color color) {
-                      setState(() {
-                        currentColor = color;
-                        tema!.color = currentColor.toARGB32();
-                      });
-                    },
-                    pickerAreaBorderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                    pickerAreaHeightPercent: 0.5,
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              //Selector Tamaño Fuente
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 234, 184, 246),
-                  borderRadius: BorderRadius.all(Radius.circular(18)),
-                ),
-                width: MediaQuery.of(context).size.width / 2,
-                child: Column(
+          
+                SizedBox(height: 300),
+          
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: const Text(
-                        'Tamaño de letra',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                    // Boton de volver al menu
+                    ElevatedButton(
+                      onPressed: () {
+                        context.go('/');
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.resolveWith((
+                          estado,
+                        ) {
+                          if (estado.contains(WidgetState.pressed)) {
+                            return const Color.fromARGB(255, 197, 197, 197);
+                          }
+                          return const Color.fromARGB(255, 103, 103, 103);
+                        }),
+                        minimumSize: WidgetStatePropertyAll(Size(250, 80)),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                       ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.arrow_back, color: Colors.white, size: 26),
+                          SizedBox(width: 10),
+                          Text(
+                            'Volver al menú',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    Slider(
-                      thumbColor: const Color.fromARGB(255, 166, 38, 235),
-                      activeColor: const Color.fromARGB(255, 166, 38, 235),
-                      value: tema!.fontSize.toDouble(),
-                      min: 10,
-                      max: 30,
-                      divisions: 10, // opcional: hace que salte de 1 en 1
-                      label: '${tema!.fontSize}px',
-                      onChanged: (double value) {
-                        setState(() {
-                          tema!.fontSize = value.toInt();
-                        });
+                    SizedBox(width: 20),
+                    // Boton de guardar cambios
+                    ElevatedButton(
+                      onPressed: () {
+                        temaServiceConfig.guardarTema(tema!);
+                        context.go('/');
                       },
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.resolveWith((
+                          estado,
+                        ) {
+                          if (estado.contains(WidgetState.pressed)) {
+                            return const Color.fromARGB(255, 0, 255, 170);
+                          }
+                          return const Color.fromARGB(255, 115, 229, 143);
+                        }),
+                        minimumSize: WidgetStatePropertyAll(Size(250, 80)),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.save, color: Colors.white, size: 26),
+                          SizedBox(width: 10),
+                          Text(
+                            'Guardar Cambios',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ),
-
-              SizedBox(height: 300),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // Boton de volver al menu
-                  ElevatedButton(
-                    onPressed: () {
-                      context.go('/');
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.resolveWith((
-                        estado,
-                      ) {
-                        if (estado.contains(WidgetState.pressed)) {
-                          return const Color.fromARGB(255, 197, 197, 197);
-                        }
-                        return const Color.fromARGB(255, 103, 103, 103);
-                      }),
-                      minimumSize: WidgetStatePropertyAll(Size(250, 80)),
-                      shape: WidgetStatePropertyAll(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.arrow_back, color: Colors.white, size: 26),
-                        SizedBox(width: 10),
-                        Text(
-                          'Volver al menú',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  // Boton de guardar cambios
-                  ElevatedButton(
-                    onPressed: () {
-                      temaServiceConfig.guardarTema(tema!);
-                      context.go('/');
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.resolveWith((
-                        estado,
-                      ) {
-                        if (estado.contains(WidgetState.pressed)) {
-                          return const Color.fromARGB(255, 0, 255, 170);
-                        }
-                        return const Color.fromARGB(255, 115, 229, 143);
-                      }),
-                      minimumSize: WidgetStatePropertyAll(Size(250, 80)),
-                      shape: WidgetStatePropertyAll(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.save, color: Colors.white, size: 26),
-                        SizedBox(width: 10),
-                        Text(
-                          'Guardar Cambios',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 30),
-            ],
+                SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       ),
